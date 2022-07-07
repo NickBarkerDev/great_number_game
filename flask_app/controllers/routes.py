@@ -5,8 +5,9 @@ from random import randint
 #public routes
 @app.route('/')
 def index():
-    session['random_num'] = randint(1,100)
-    # print(session)
+    if 'random_num' not in session:
+        session['random_num'] = randint(1,100)
+    print(session['random_num'])
     return render_template('index.html')
 
 
@@ -15,5 +16,6 @@ def index():
 #hidden routes
 @app.route('/submit_num', methods=['POST'])
 def submit_num():
-    if
-    pass
+    session['guessed_num'] = int(request.form['guessed_num'])
+    print(session['guessed_num'])
+    return redirect('/')

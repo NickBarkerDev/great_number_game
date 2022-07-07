@@ -12,6 +12,18 @@
             <input type="number" min="1" max="100" name="guessed_num">
             <button>Submit</button>
         </form>
+
+        <div class="dynamic-content">
+            {% if 'guessed_num' in session: %}
+                {% if session['guessed_num'] > session['random_num']: %}
+                <p>Too high!</p>
+                {% elif session['guessed_num'] < session['random_num']: %}
+                <p>Too low!</p>
+                {% elif session['guessed_num'] == session['random_num']: %}
+                <p>Your guess of {{ session['guessed_num'] }} was correct!</p>
+                {% endif %}
+            {% endif %}
+        </div>
     </div>
 </body>
 </html>
